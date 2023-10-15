@@ -2,6 +2,7 @@
 const express = require('express');
 const AWS = require('aws-sdk');
 const cors = require('cors');
+const morgan = require('morgan');
 
 // Configure AWS
 AWS.config.update({
@@ -17,6 +18,8 @@ const s3 = new AWS.S3();
 app.use(cors({
     origin: 'https://geotest.pancasat-lab.cloud'
 }));
+
+app.use(morgan('combined'));
 
 app.get('/', async (req, res) => {
   try {
