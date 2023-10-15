@@ -1,6 +1,7 @@
 // index.js
 const express = require('express');
 const AWS = require('aws-sdk');
+const cors = require('cors');
 
 // Configure AWS
 AWS.config.update({
@@ -12,6 +13,10 @@ AWS.config.update({
 
 const app = express();
 const s3 = new AWS.S3();
+
+app.use(cors({
+    origin: 'https://geotest.pancasat-lab.cloud'
+}));
 
 app.get('/', async (req, res) => {
   try {
